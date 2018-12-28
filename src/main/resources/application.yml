@@ -1,0 +1,49 @@
+server:
+  port: 8083
+spring:
+  jackson:
+    serialization:
+      write_dates_as_timestamps: false
+    deserialization:
+      fail-on-unknown-properties: false
+    default-property-inclusion: non_null      
+  data:
+    # Default MongoDB Settings.
+    mongodb:
+      uri: mongodb://localhost:27017/flights
+#  cloud:
+#    # Default Kafka Settings.
+#    stream:
+#      bindings:
+#        outputchannel1:
+#          destination: topic_fin  
+#          content-type: application/json        
+#      kafka: 
+#        binder:        
+#          brokers: localhost:9092
+#          zkNodes: localhost:2181
+
+whiteListOrigins: http://localhost:8080,http://127.0.0.1:8080
+
+#swagger:
+#  oauth2:
+#    client-id: swagger
+#    client-secret: swagger-secret
+#    scope: microservice
+#security:
+#   oauth2:
+#     # Please set these up on mitreid-openid-connect
+#     client:
+#       client-id: devs-testing
+#       client-secret: devs-secret
+#       access-token-uri: http://dev-mitreid_openid-connect.t2link-nonprod.shoppingflightoffers.com/token
+#       user-authorization-uri: http://dev-mitreid_openid-connect.t2link-nonprod.shoppingflightoffers.com/authorize
+#       # This is custom scope for microservice to microservice communication and need to be create on mitreid-openid-connect
+#       scope: microservice
+#     resource:
+#       # We are currently not using this userInfoUri but it is left here for future reference
+#       # userInfoUri: http://localhost:8777/shoppingflightoffers-openid-connect/userinfo
+#       jwk:
+#         # Tells the JWT framework to fetch the public key from the authorization server during startup
+#         # Note: The authorization server needs to be running...
+#         key-set-uri: http://dev-mitreid_openid-connect.t2link-nonprod.shoppingflightoffers.com/jwk

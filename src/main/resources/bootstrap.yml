@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: shopping-flight-offers
+
+---
+spring:
+  profiles: docker
+  cloud:
+    config:
+#      discovery:
+#        enabled: false
+#        service-id: configuration-service
+eureka:
+  client:
+    region: default
+    service-url:
+      defaultZone: http://localhost:${eureka_port:8761}/eureka/
+
+---
+spring:
+  profiles: swarm
+  cloud:
+    config:
+#      discovery:
+#        enabled: false
+#        service-id: configuration-service
+eureka:
+  client:
+    region: ca
+    availability-zones:
+      ca: z1,z2,z3
+    service-url:
+      z1: http://${environment_short}-eureka-${zone1}:${eureka_port:8761}/eureka/
+      z2: http://${environment_short}-eureka-${zone2}:${eureka_port:8761}/eureka/
+      z3: http://${environment_short}-eureka-${zone3}:${eureka_port:8761}/eureka/
+  instance:
+    metadata-map:
+      zone: ${current_zone}
+#logging:
+#  level:
+#    com.netflix.discovery: 'OFF'
